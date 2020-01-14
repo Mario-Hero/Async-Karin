@@ -19,15 +19,12 @@
 
 module registerLeft #(parameter Width=32) (saveReq,saveFin,leftReq,leftFin,in,out);
 input saveReq,leftReq;
-output reg saveFin=1'b0, leftFin=1'b0;
+(* dont_touch="true" *) output reg saveFin=1'b0, leftFin=1'b0;
 input [Width-1:0] in;
-output reg [Width-1:0] out=0;
+(* dont_touch="true" *) output reg [Width-1:0] out=0;
 
-reg leftReqBuf=1'b0;
-reg leftFinBuf=1'b0;
-reg saveReqBuf=1'b0;
-reg saveFinBuf=1'b0;
-wire eventFin;
+(* dont_touch="true" *) reg leftReqBuf=1'b0,leftFinBuf=1'b0,saveReqBuf=1'b0,saveFinBuf=1'b0;
+(* dont_touch="true" *) wire eventFin;
 assign eventFin=leftFinBuf|saveFinBuf;
 
 always@(posedge leftReq or posedge leftFinBuf) begin
@@ -66,7 +63,7 @@ end
 else if(leftReqBuf) begin
     leftFinBuf<=1'b1;
     saveFinBuf<=1'b0;
-    out<=(out<<1);
+    out<={out<<1,1'b0};
 end
 else begin
     leftFinBuf<=1'b0;

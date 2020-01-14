@@ -22,11 +22,12 @@ input [reqNumber-1:0] reqs;
 output reg fin=1'b0;
 
 reg [reqNumber-1:0] finBuf=0;
-wire [reqNumber:0] finAll;
-assign finAll[0]=finBuf[0];
+reg [reqNumber-1:0] zeros=0;
+wire finAll;
 
+assign finAll = (finBuf!=zeros);
 
-always@(posedge finAll[reqNumber] or posedge fin) begin
+always@(posedge finAll or posedge fin) begin
     if(fin) fin<=1'b0;
     else fin<=1'b1;
 end
@@ -36,10 +37,9 @@ generate
 for(i=0;i<reqNumber;i=i+1)
 begin:ipp
 always@(posedge reqs[i] or posedge fin) begin
-    if(fin) finBuf[i]=1'b0;
-    else finBuf[i]=1'b1;
+    if(fin) finBuf[i]<=1'b0;
+    else finBuf[i]<=1'b1;
 end
-assign finAll[i+1]=finAll[i]|finBuf[i];
 end
 
 endgenerate

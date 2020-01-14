@@ -22,20 +22,18 @@ input [reqNumber-1:0] reqs;
 output wire fin;
 
 reg [reqNumber-1:0] reqsSave=0;
-wire [reqNumber:0] andResult;
-assign andResult[0]=reqsSave[0];
-assign fin=andResult[reqNumber];
+reg [reqNumber-1:0] zeros=0;
+
+assign fin=(reqsSave==~zeros);
 
 genvar i;
 generate
 for(i=0;i<reqNumber;i=i+1)
 begin:reqTogether
-
     always@(posedge reqs[i] or posedge fin) begin
         if(fin) reqsSave[i]<=1'b0;
         else reqsSave[i]<=1'b1;
     end 
-    assign andResult[i+1]=andResult[i]&reqsSave[i];
 end
 endgenerate 
 

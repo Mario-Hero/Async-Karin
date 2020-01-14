@@ -28,6 +28,6 @@ wire biggerFin,smallerFin;
 comparator  #(Width) comparator (req,compareFin,a,b,biggerSign,equalSign,smallerSign);
 chooseFrom2 #(Width) chooseSmaller (compareFin,smallerFin,a,b,smaller,smallerSign);
 chooseFrom2 #(Width) chooseBigger  (compareFin,biggerFin,b,a,bigger,smallerSign);
-reqAndSimple #(2) finAnd ({smallerFin,biggerFin},fin);
+reqAnd      #(2) finAnd ({smallerFin,biggerFin},fin);
 
 endmodule

@@ -40,7 +40,7 @@ registerLeft #(2*Width) registerY (req,,reqOrFin,,y,yOut);
 registerLeft #(Width+1) registerI (req,,reqOrFin,finishBranchReq,1,iOut);
 reqOr #(2) or2 ({branchOnce0,saveResultFin},reqOrFin);
 branch branchOnce (onceFin,branchOnce1,branchOnce0,xOut[0]);
-add #(2*Width) addResult  (branchOnce1,saveResultReq,1'b0,result,yOut,resultIn,);
+add #(2*Width) addResult  (branchOnce1,saveResultReq,result,yOut,resultIn,);
 var #(2*Width,0) resultVar(saveResultReq,saveResultFin,req,,resultIn,result);
 once once (xSaveFin,onceReq2,onceFin,fin,);
 branch finishBranch (finishBranchReq,fin,onceReq2,iOut[Width]);

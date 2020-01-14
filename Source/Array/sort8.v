@@ -8,7 +8,7 @@
 //              This module builds a Bitonic Sorting Network to sort eight numbers.
 //              The input and output cannot be matrix in Verilog so you should input and catch them in a line.
 // 
-// Dependencies: compareSwap, reqAndSimple
+// Dependencies: compareSwap, reqAnd
 // 
 // Revision:
 // Revision 0.01 - File Created
@@ -16,13 +16,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module sort8 #(parameter Width=32) (req,fin,numberInput,numberOutput);
+module sort8 #(parameter Width=16) (req,fin,numberInput,numberOutput);
 input req;
 output wire fin;
 input [Width*8-1:0] numberInput;
 output wire [Width*8-1:0] numberOutput;   
     
-wire [8:0] step [0:9];
+(* dont_touch="true" *) wire [8:0] step [0:9];
 wire [Width*8-1:0] swapOut [0:8];
 assign numberOutput=swapOut[8];
 assign fin=step[9][8];
@@ -37,7 +37,7 @@ end
 
 for(i=0;i<10;i=i+1) 
 begin:cs
-    reqAndSimple #(8) reqAnd (step[i][7:0],step[i][8]);
+    reqAnd #(8) reqAnd (step[i][7:0],step[i][8]);
 end
 
 for(i=0;i<8;i=i+2) 

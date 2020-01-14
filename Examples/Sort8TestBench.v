@@ -17,10 +17,10 @@
 module Sort8TestBench();
 reg req=1'b0;
 wire fin;
-reg [31:0] inputNumber[0:7];
-wire [255:0] inputNumberLine;
-wire [255:0] outputNumberLine;
-wire [31:0] outputNumber[0:7];
+reg [15:0] inputNumber[0:7];
+wire [127:0] inputNumberLine;
+wire [127:0] outputNumberLine;
+wire [15:0] outputNumber[0:7];
 
 initial begin
 #10;
@@ -38,8 +38,8 @@ genvar i;
 generate 
 for(i=0;i<8;i=i+1)
 begin
-   assign inputNumberLine[32*i+31:i*32]=inputNumber[7-i];
-   assign outputNumber[7-i]=outputNumberLine[32*i+31:i*32];
+   assign inputNumberLine[16*i+15:i*16]=inputNumber[7-i];
+   assign outputNumber[7-i]=outputNumberLine[16*i+15:i*16];
 end
 endgenerate 
 

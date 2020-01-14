@@ -17,13 +17,13 @@
 module FibonacciTestBench();
 reg req=1'b0;
 wire fin;
-wire [15:0] result;
-reg [15:0] N=16'd10;  // fibonacci[]={1,1,2,3,5,8...}, starts numbering from 0
+wire [31:0] result;
+reg [31:0] N=32'd44;  // fibonacci[]={1,1,2,3,5,8...}, starts numbering from 0
 
 initial begin
-#400 req=1'b1;
+#100 req=1'b1;
 end
 
-fibonacci #(16) fibonacci (req,fin,N,result);
+fibonacci #(32) fibonacci (req,fin,N,result);
 
 endmodule

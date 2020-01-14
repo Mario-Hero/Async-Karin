@@ -15,41 +15,25 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module equalOrNot #(parameter Width=32) (req,equal,notEqual,x,y);
+module equalOrNot #(parameter Width=32) (req,fin,equal,notEqual,x,y);
 input req;
 input [Width-1:0] x,y;
-output reg equal=1'b0,notEqual=1'b0;
+output wire equal,notEqual,fin;
 
-reg reqBuf=1'b0;
-wire compareFin;
-wire [Width:0] e,et;
-wire [Width-1:0] ne;
+reg [1:0] result=2'b00;
 
-always@(posedge req or posedge compareFin) begin
-if(compareFin) begin
-	reqBuf<=1'b0;
-	equal<=e[Width];
-	notEqual<=et[Width];
-end
-else begin
-    reqBuf<=1'b1;
-	equal<=1'b0;
-	notEqual<=1'b0;
-end
-end
+assign equal = result[1];
+assign notEqual = result[0];
+assign fin = (result==2'b01)|(result==2'b10);
+wire start = ~fin;
 
-assign e[0]=reqBuf;
-assign et[0]=ne[0];
-assign compareFin=reqBuf&(e[Width]|et[Width]);
-
-genvar i;
-generate 
-	for(i=0;i<Width;i=i+1)
-	begin:oneEqual 
-		oneEqual oneEqual (e[i],e[i+1],ne[i],x[i],y[i]);
-		assign et[i+1]=et[i]|ne[i];
+always@(posedge req or posedge start) begin
+	if(start) begin
+		if(x==y) result<=2'b10;
+		else result<=2'b01;
 	end
-endgenerate
+	else result<=2'b00;
+end
 
 endmodule
 

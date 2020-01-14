@@ -15,48 +15,33 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module add #(parameter N=32) (req,fin,cin,x,y,so,couto);
-input req,cin;
+module add #(parameter N=32) (req,fin,x,y,so,couto);
+input req;
 input [N-1:0] x,y;
-output reg fin=1'b1;
+output reg fin=1'b0;
 output reg [N-1:0] so=0;
 output reg couto=1'b0;
 
-wire [N-1:0] s;
+wire [N-1:0]s;
 wire cout;
-reg rec=1'b0;
-wire fin_add;
-wire [N:0] c,f,ft;
+assign {cout,s} = x+y;
 
-assign c[0]=cin;
-assign cout=c[N];
-assign f[0]=rec;
-assign ft[0]=f[0];
-assign fin_add=ft[N];
+wire req2;
 
-always@(posedge req or posedge fin_add) begin
-if(fin_add) begin
-	fin<=1'b1;
-	rec<=1'b0;
-	so<=s;
-	couto<=cout;
-end
-else begin
-	fin<=1'b0;
-	rec<=1'b1;
-	so<=0;
-	couto<=1'b0;
-end
-end
+delayOne delay1 (req,req2);
 
-genvar i;
-generate 
-	for(i=0;i<N;i=i+1)
-	begin:fullAdder
-		fullAdder fullAdder (rec,f[i],f[i+1],c[i],x[i],y[i],s[i],c[i+1]);
-		assign ft[i+1]=f[i]&ft[i];
+always@(posedge req2 or posedge fin) begin
+	if(fin) begin
+		fin<=1'b0;
+		so<=so;
+		couto<=couto;
 	end
-endgenerate
+	else begin
+		fin<=1'b1;
+		so<=s;
+		couto<=cout;
+	end
+end	
 
 endmodule
 

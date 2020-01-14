@@ -41,7 +41,7 @@ end
 genvar i;
 generate
 for(i=0;i<N;i=i+1)
-begin:chooser1
+begin
     always@(posedge reqs[i] or posedge reqAndOr[N]) begin
         if(reqAndOr[N]) reqSave[i]<=1'b0;
         else reqSave[i]<=1'b1;

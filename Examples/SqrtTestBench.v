@@ -16,14 +16,19 @@
 
 module SqrtTestBench();
 reg req=1'b0;
+//reg clk=1'b1;
 wire fin;
 reg [31:0] in=32'd10454520;  // change the input number as you like
-wire [31:0] out;   
+wire [31:0] out; 
 
 initial begin
-#200 req=1'b1;
+#100 req=1'b1;
 end
-
+/*
+always begin
+#5 clk=~clk;
+end
+*/
 sqrt #(32) sqrt (req,fin,in,out);
-
+//sqrtIP sqrtIP (clk,req,in,fin,out);
 endmodule

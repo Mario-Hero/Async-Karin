@@ -22,30 +22,22 @@ input [Width-1:0] N;
 output wire fin;
 output wire [Width-1:0] result;
 
-wire [Width-1:0] i,a,b,cCal,iCal,c;
-reg [Width-1:0] none=0;
+wire [Width-1:0] i,a,b,cCal,iCal;
+reg [Width-1:0] one=1;
 wire onceFin,ABCFin,iFin,equalFin;
 wire saveFin,saveRst;
-wire cout1,cout2;
 wire branchFalse,branchTrue;
-wire saveFinA,saveFinB,saveFinC,saveFinI;
-wire rstFinA,rstFinB,rstFinC,rstFinI;
 wire onceRstReq,onceRstFin;
 wire resultRstFin,addFin;
 assign onceRstReq=fin;
 
-var #(Width,1) resultSaver (branchTrue,fin,1'b0,resultRstFin,c,result);
-var #(Width,1) A (addFin,saveFinA,fin,rstFinA,b,a);
-var #(Width,1) B (addFin,saveFinB,fin,rstFinB,cCal,b);
-var #(Width,0) C (addFin,saveFinC,fin,rstFinC,cCal,c);
-var #(Width,2) I (addFin,saveFinI,fin,rstFinI,iCal,i);
-
-reqAnd #(4) IABCFin ({saveFinA,saveFinB,saveFinC,saveFinI},saveFin);
-reqAnd #(2) ABCI ({ABCFin,iFin},addFin);
+var #(Width,0) resultSaver (branchTrue,fin,1'b0,resultRstFin,cCal,result);
+var #(Width,1) A (ABCFin,,onceRstFin,,b,a);
+var #(Width,1) B (ABCFin,,onceRstFin,,cCal,b);
+var #(Width,2) I (iFin,,onceRstFin,,iCal,i);
 
 once                 oncef   (req,branchFalse,onceFin,onceRstReq,onceRstFin);
-add        #(Width)  addABC  (onceFin,ABCFin,1'b0,a,b,cCal,cout1);
-add        #(Width)  addi    (onceFin,iFin,1'b1,i,none,iCal,cout2);
-equalOrNot #(Width)  equalOr (addFin,branchTrue,branchFalse,i,N);
-
+add        #(Width)  addABC  (onceFin,ABCFin,a,b,cCal,);
+add        #(Width)  addi    (onceFin,iFin,i,one,iCal,);
+equalOrNot #(Width)  equalOr (iFin,equalFin,branchTrue,branchFalse,i,N);
 endmodule
