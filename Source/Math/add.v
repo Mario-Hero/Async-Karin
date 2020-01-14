@@ -4,25 +4,26 @@
 // 
 // Create Date: 12/02/2019 09:13:54 PM
 // Module Name: add
-// Description: When req rises, x+y+cin -> so, 
-//							  Carry Out -> couto. Then fin rises.
+// Description: When req rises, x+y -> so, 
+//					      Carry Out -> couto. Then fin rises.
 // 
-// Dependencies: fullAdder
+// Dependencies: 
 // 
 // Revision:
 // Revision 0.01 - File Created
+// Revision 0.02 - Faster
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module add #(parameter N=32) (req,fin,x,y,so,couto);
+module add #(parameter Width=32) (req,fin,x,y,so,couto);
 input req;
-input [N-1:0] x,y;
+input [Width-1:0] x,y;
 output reg fin=1'b0;
-output reg [N-1:0] so=0;
+output reg [Width-1:0] so=0;
 output reg couto=1'b0;
 
-wire [N-1:0]s;
+wire [Width-1:0]s;
 wire cout;
 assign {cout,s} = x+y;
 

@@ -5,7 +5,7 @@
 // Create Date: 11/30/2019 04:51:46 PM
 // Module Name: comparator
 // Description: When the req rises, this module compares x and y, 
-//				output the result to bigger, equal and smaller. Then it raises fin.
+//				output the result to bigger, equal and smaller. Then fin rises.
 // 
 // Dependencies: 
 // 

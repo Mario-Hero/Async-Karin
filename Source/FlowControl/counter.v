@@ -1,15 +1,11 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 01/14/2020 11:58:08 AM
-// Design Name: 
+// Author: Mario-Hero
+//
+// Create Date: 01/14/2020 10:30:02 AM
 // Module Name: counter
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
+// Description: A counter made by a shift register. (Do not use it. It's being tested.)
+//
 // 
 // Dependencies: 
 // 

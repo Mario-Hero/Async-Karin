@@ -17,7 +17,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module sqrtInitialValue #(parameter Width=32) (req,fin,x,yo);
 input req;
 output reg fin=1'b0;
@@ -51,9 +50,7 @@ begin:sqrti
         if(i>=(Width-1)/2) assign y[i]=1'b0; 
     end  
 end
-
 endgenerate
-
 
 always@(posedge req or posedge reqBuf) begin
     if(reqBuf) begin

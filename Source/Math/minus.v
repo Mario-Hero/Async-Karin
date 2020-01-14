@@ -4,30 +4,30 @@
 // 
 // Create Date: 12/02/2019 09:13:54 PM
 // Module Name: minus
-// Description: When req rises, x-y-cin -> so,
-//							  Carry Out -> couto. Then fin rises.
+// Description: When req rises, x-y -> so,
+//						  Carry Out -> couto. Then fin rises.
 // 
-// Dependencies: fullMinuser
+// Dependencies: 
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Revision 0.02 - Better AND
+// Revision 0.02 - Faster
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module minus #(parameter N=32) (req,fin,x,y,so,couto);
+module minus #(parameter Width=32) (req,fin,x,y,so,couto);
 input req;
-input [N-1:0] x,y;
+input [Width-1:0] x,y;
 output reg fin=1'b0;
-output reg [N-1:0] so=0;
+output reg [Width-1:0] so=0;
 output reg couto=0;
 
-wire [N-1:0]s;
+wire [Width-1:0]s;
 wire cout;
-wire [N:0] result;
+wire [Width:0] result;
 assign result = {x,1'b1}-{y,1'b0};
-assign s = result[N:1];
+assign s = result[Width:1];
 assign cout = ~result[0];
 wire req2;
 

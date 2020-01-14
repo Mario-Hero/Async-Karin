@@ -5,7 +5,8 @@
 // Create Date: 11/30/2019 04:51:46 PM
 // Module Name: equalOrNot
 // Description: When req rises, if x==y then equal rises 
-//                              else notEqual rises
+//                              else notEqual rises.
+//				Then fin rises.
 // 
 // Dependencies: oneEqual
 // 

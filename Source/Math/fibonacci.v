@@ -8,10 +8,11 @@
 //              Width is the bit width of N and result.
 //              N must >= 3. fibonacci sequence starts numbering from 0.
 //
-// Dependencies: var, reqAndSimple, once, add, equalOrNot
+// Dependencies: var, once, add, equalOrNot
 // 
 // Revision:
 // Revision 0.01 - File Created
+// Revision 0.02 - Faster
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
@@ -40,4 +41,5 @@ once                 oncef   (req,branchFalse,onceFin,onceRstReq,onceRstFin);
 add        #(Width)  addABC  (onceFin,ABCFin,a,b,cCal,);
 add        #(Width)  addi    (onceFin,iFin,i,one,iCal,);
 equalOrNot #(Width)  equalOr (iFin,equalFin,branchTrue,branchFalse,i,N);
+
 endmodule

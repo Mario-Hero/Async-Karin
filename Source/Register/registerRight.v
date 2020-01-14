@@ -16,7 +16,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module registerRight #(parameter Width=32) (saveReq,saveFin,rightReq,rightFin,in,out);
 input saveReq,rightReq;
 output reg saveFin=1'b0, rightFin=1'b0;

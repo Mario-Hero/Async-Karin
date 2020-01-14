@@ -20,7 +20,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module divide #(parameter AWidth=32,parameter BWidth=32) (req,fin,a,b,s,mod);
 input req;
 input [AWidth-1:0] a;

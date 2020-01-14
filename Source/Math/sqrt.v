@@ -13,14 +13,13 @@
 //
 //              The result y is a integer.  y^2 <= x < (y+1)^2
 // 
-// Dependencies: sqrtInitialValue, var2, divide, add, comparator, branch
+// Dependencies: sqrtInitialValue, var2, divide, add, comparator
 // 
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
 
 module sqrt #(parameter Width=32)(req,fin,x,y);
 input req;
@@ -38,12 +37,9 @@ assign fin = equalFin&equal;
 
 reqOr #(2) reqOrFin ({xFin1,xFin2},xFin);
 sqrtInitialValue #(Width) sqrtInitialValue (req,req2,x,xInitial);
-
 var2 #(Width,1) xVar (req2,continues,xFin1,xFin2,xInitial,x1In[Width:1],xOut);
-
 divide #(Width,Width) divide (xFin,divideFin,x,xOut,xDxOut,);
 add #(Width+1) add (divideFin,addFin,{1'b0,xOut},{1'b0,xDxOut},x1In,);
-//delayOne delayeq (addFin,addFin2);
 equalOrNot #(Width) equalOr (addFin,equalFin,equal,notEqual,x1In[Width:1],xOut);
 
 endmodule

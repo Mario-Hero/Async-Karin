@@ -8,8 +8,10 @@
 //              output each bit when reqDo rises.
 //              It works like:
 //                  req -> doFin -> reqDo -> doFin -> reqDo -> doFin -> reqDo -> fin
+//                 
+//              (DO NOT USE IT, because it's being tested.)
 //
-// Dependencies: registerRight, registerLeft
+// Dependencies: registerRight, registerLeft, counter
 // 
 // Revision:
 // Revision 0.01 - File Created
