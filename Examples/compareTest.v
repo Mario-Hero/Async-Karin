@@ -1,17 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Author: Mario-Hero
 // 
-// Create Date: 01/10/2020 03:21:02 PM
-// Design Name: 
-// Module Name: compareTest
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
+// Create Date: 01/10/2020 03:21:00 PM
+// Module Name: addTest
+// Description: The testbench to test the speed of SYNC add and ASYNC compare.
 // 
-// Dependencies: 
+// Dependencies: comparator
 // 
 // Revision:
 // Revision 0.01 - File Created

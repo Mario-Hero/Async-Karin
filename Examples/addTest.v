@@ -1,17 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Author: Mario-Hero
 // 
-// Create Date: 12/10/2019 01:52:30 PM
-// Design Name: 
+// Create Date: 12/10/2019 01:52:54 PM
 // Module Name: addTest
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
+// Description: The testbench to test the speed of SYNC add and ASYNC add.
 // 
-// Dependencies: 
+// Dependencies: add
 // 
 // Revision:
 // Revision 0.01 - File Created
