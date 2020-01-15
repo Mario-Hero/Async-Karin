@@ -19,7 +19,7 @@
 module delayOne(req,fin);
 input req;
 (* dont_touch="true" *) output reg fin=1'b0;
-// (* dont_touch="true" *) make it work on Xilinx platform. 
+// (* dont_touch="true" *) makes it work on Xilinx platform. 
 
 always@(posedge req or posedge fin) begin
     if(fin) fin<=1'b0;
