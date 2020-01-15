@@ -16,7 +16,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module functionChooser #(parameter N=2) (reqs,sets,fin,rst);
 input [N-1:0] reqs;
 output reg [N-1:0] sets=0;
@@ -41,7 +40,7 @@ end
 genvar i;
 generate
 for(i=0;i<N;i=i+1)
-begin
+begin: functionChooserSub
     always@(posedge reqs[i] or posedge reqAndOr[N]) begin
         if(reqAndOr[N]) reqSave[i]<=1'b0;
         else reqSave[i]<=1'b1;
