@@ -16,7 +16,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module delayOne(req,fin);
 input req;
 (* dont_touch="true" *) output reg fin=1'b0 /*synthesis noprune*/;
