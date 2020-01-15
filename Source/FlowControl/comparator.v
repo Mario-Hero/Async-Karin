@@ -27,9 +27,7 @@ reg rec=1'b0;
 
 assign fin = (result==3'b100)|(result==3'b010)|(result==3'b001);
 assign start = rec&(~fin);
-assign bigger = result[2];
-assign equal = result[1];
-assign smaller = result[0];
+assign {bigger,equal,smaller} = result;
 
 always@(posedge req or posedge start) begin
    if(start) begin

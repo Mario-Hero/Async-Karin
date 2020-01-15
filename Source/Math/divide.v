@@ -28,29 +28,24 @@ output wire [AWidth-1:0] s;
 output wire [BWidth-1:0] mod;
 output wire fin;
 
-wire onceLeftRightReq2;
 reg [AWidth:0] zeros2=0;
 reg [AWidth-1:0] zeros=0;
 reg [BWidth-1:0] zerosM=0;
-wire req2;
 wire [AWidth+1:0] right;
 wire [AWidth-1:0] rightOrs,aOut,aMinus;
 wire [AWidth+BWidth-1:0] bOut;
-wire onceLeftRightRstFin;
-wire aFin,orFin,rightFin;
-wire compareFin;
-wire compareReq,minusFin;
-wire smaller,branchBigger,branchSmaller,bigger,equal;
+wire onceLeftRightReq2,onceLeftRightRstFin,aFin,orFin,rightFin,req2,minusFin;
+wire compareFin,compareReq,smaller,bigger,equal,branchBigger,branchSmaller;
 
 assign mod=aOut[BWidth-1:0];
 assign branchSmaller = compareFin&(smaller);
-assign branchBigger = compareFin&(bigger|equal);
+assign branchBigger  = compareFin&(bigger|equal);
 
-var #(AWidth,0) sVar (branchBigger,,req,,rightOrs,s);
-var2 #(AWidth,0) aVar (minusFin,req,aFin,req2,aMinus,a,aOut);
+var  #(AWidth,0) sVar (branchBigger,, req,    ,rightOrs,s);
+var2 #(AWidth,0) aVar (minusFin, req,aFin,req2,aMinus,a,aOut);
 
-registerRight #(AWidth+2) control (req,,orFin,rightFin,{1'b1,zeros2},right);
-registerRight #(AWidth+BWidth) bRight (req,,orFin,,{b,zeros},bOut);
+registerRight #(AWidth+2)     control (req,,orFin,rightFin,{1'b1,zeros2},right);
+registerRight #(AWidth+BWidth) bRight (req,,orFin,        ,{b,zeros}    ,bOut);
 
 once onceLeftRight (req2,onceLeftRightReq2,compareReq,fin,onceLeftRightRstFin);
 comparator #(AWidth+BWidth) comparatorAB (compareReq,compareFin,{zerosM,aOut},bOut,bigger,equal,smaller);
