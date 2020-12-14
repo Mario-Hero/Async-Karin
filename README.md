@@ -4,6 +4,33 @@ Author: Jingge Chen (mariocanfly@hotmail.com)
 
 Version: 0.2  *( Last Update: 2020/01/14 )*
 
+
+
+## 写在前面
+
+经过许多测试，这套代码在FPGA上的运行速度和资源消耗实在是不堪。而且缺少约束文件的情况下，运行速度依赖于大量手动调试，如果用自动布局布线那带来的就是比较随机的结果，恐怕很难保证在功能复杂的情况下不出错。
+
+使用时钟+状态机(再整个总线？）的正常设计流程，配合FPGA自带的DSP，就可以很好地解决问题、完成项目，而使用这套代码并不能实现更快的异步电路，如果你仍然要采用完全的异步电路的模式来设计，可以选择自己设计代码和握手流程，并加以约束，但一般情况下完全异步的电路在FPGA上都是速度慢而且消耗资源大的，在ASIC上也许就不一样了。
+
+我现在做FPGA的东西也是用的同步时钟的方法，不同时钟域的状态机通过2相握手协议来传递信息，这样代码编写起来比较方便。
+
+所以……没有必要再用它了。
+
+
+
+## First
+
+With many tests, the running speed and resource consumption of this code on FPGA are still really bad. Moreover, in the case of lack of constraint files, if automatic layout and routing is used, it will bring more random results. I am afraid it is difficult to ensure that there is no error in the case of complex functions.
+
+Using the normal design process of clock & state machine with the DSP in FPGAs, we can solve most of the problems and complete projects well. But using this code can't realize the faster asynchronous circuit. If you still want to design in the mode of complete asynchronous circuit, you can write your own code and handshake process, then make constraint files. But in general, completely asynchronous circuits in FPGA, work slow and consumes a lot of resources, which is different in ASIC.
+
+Recently I did an FPGA project. And I'm getting used to use synchronize method with state machines. And two-phase handshake protocol for crossing clock domain transfers. Using synchronize method is much more convenient.
+
+So there is no need to use this code again. 
+
+
+<br>
+
 **Async-Karin** is an asynchronous framework for FPGA written in Verilog. It has been tested on a Xilinx Artix-7 board and an Altera Cyclone-IV board.
 
 - **Async:** It doesn't need a clock to work.
@@ -47,25 +74,6 @@ Here is the new time and resource consumption table of operations.
 | **32-bit  Fibonacci (N) N=45**                     | Async-Karin(Artix-7)    | Loop                      | 444             | 66                    | 222                              |
 |                                                    | Async-Karin(Cyclone-IV) | Loop                      | 280~300         | 219                   | 161                              |
 |                                                    | 100MHz Sync             | Loop                      | 528             | 45                    | 128                              |
-
-
-
-# Next Target (v0.21)
-
-Math: + trigonometric functions like sin, cos, tan...and make square root faster.
-
-Flow Control: + traversal, while, for...
-
-Array: test Bitonic Sort...
-
-
-
-Further Target? : + Convolution? +FFT? + CNN ? 
-
-
-
-*If you would like to add some new functions, you can send me an e-mail.*
-
 
 
 # Background
